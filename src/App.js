@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './Navbar';
+// import logo from './logo.svg';
+// import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div>
+        {/* navbar component */}
+          <Navbar />
+        {/* navbar component */}
+
+        {/* body component */}
+        <div className="container-fluid">
+          {/* welcome content */}
+          <div className="row">
+            <div className="col-md-7">
+              <p className="text-uppercase text-secondary text-left">We help you bring home the bacon</p>
+              <p className="lead text-left">The Bacon brings <span className="font-weight-bold">new roles</span> to the table, because<br/> we're <span className="font-weight-bold">better</span> when we work <span className="font-weight-bold">together</span>.</p>
+              <p>
+                <button type="button" className="btn btn-primary">Get Started</button>
+              </p>
+            </div>
+          </div>
+          {/* welcome content */}
+
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {/* body component */}
       </div>
     );
   }
