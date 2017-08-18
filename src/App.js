@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Navbar from './Navbar';
+import Welcome from './Welcome';
 import Main from './Main';
 // import logo from './logo.svg';
 // import './App.css';
@@ -10,8 +11,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobs: []
+      jobs: [],
+      getStartedClicked: false,
     }
+    this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
   }
 
   componentWillMount() {
@@ -19,9 +22,13 @@ class App extends Component {
       .then((response) => {
         this.setState({ jobs: response.data })
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
+  }
+
+  handleGetStartedClick() {
+    this.setState({ getStartedClicked: !this.state.getStartedClicked });
   }
 
   render() {
@@ -34,15 +41,7 @@ class App extends Component {
         {/* body component */}
         <div className="container-fluid">
           {/* welcome content */}
-          <div className="row">
-            <div className="col-md-7">
-              <p className="text-uppercase text-secondary text-left">We help you bring home the bacon</p>
-              <p className="lead text-left">The Bacon brings <span className="font-weight-bold">new roles</span> to the table, because<br/> we're <span className="font-weight-bold">better</span> when we work <span className="font-weight-bold">together</span>.</p>
-              <p>
-                <button type="button" className="btn btn-primary">Get Started</button>
-              </p>
-            </div>
-          </div>
+          {!this.state.getStartedClicked && <Welcome handleGetStartedClick={this.handleGetStartedClick}/>}
           {/* welcome content */}
 
           {/* body component */}
