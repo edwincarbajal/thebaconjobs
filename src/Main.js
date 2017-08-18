@@ -6,7 +6,7 @@ import JobRoutes from './JobRoutes';
 import GettingStarted from './GettingStarted';
 
 const Main = (props) => {
-  const { jobs } = props;
+  const { jobs, checkLocalStorage } = props;
   return(
     <main>
       <Switch>
@@ -14,7 +14,9 @@ const Main = (props) => {
           <Jobs {...props} data={jobs} />
         )}/>
         <Route path='/jobs' component={JobRoutes}/>
-        <Route exact path='/getting-started' component={GettingStarted}/>
+        <Route exact path='/getting-started' render={(props) => (
+          <GettingStarted {...props} checkLocalStorage={checkLocalStorage}/>
+        )}/>
       </Switch>
     </main>
   );
