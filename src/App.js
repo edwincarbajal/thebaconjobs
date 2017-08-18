@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       jobs: [],
       getStartedClicked: false,
+      isLoggedIn: false
     }
     this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
   }
@@ -25,6 +26,13 @@ class App extends Component {
       .catch((error) => {
         console.log(error);
       });
+
+    this.checkLocalStorage();
+  }
+
+  checkLocalStorage = () => {
+    const token = localStorage.getItem('jwt');
+    token && this.setState({ isLoggedIn: !this.state.isLoggedIn });
   }
 
   handleGetStartedClick() {
@@ -32,6 +40,7 @@ class App extends Component {
   }
 
   render() {
+    const tokenStatus = this.state.getStartedClicked || this.state.isLoggedIn;
     return (
       <div>
         {/* navbar component */}
@@ -40,14 +49,13 @@ class App extends Component {
 
         {/* body component */}
         <div className="container-fluid">
-          {/* welcome content */}
-          {!this.state.getStartedClicked && <Welcome handleGetStartedClick={this.handleGetStartedClick}/>}
-          {/* welcome content */}
+          {!tokenStatus &&
+            <Welcome handleGetStartedClick={this.handleGetStartedClick}/>
+          }
 
-          {/* body component */}
-          <Main jobs={this.state.jobs}/>
-          {/* body component */}
+          <Main jobs={this.state.jobs} checkLocalStorage={this.checkLocalStorage}/>
         </div>
+        {/* body component */}
       </div>
     );
   }
