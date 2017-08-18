@@ -13,10 +13,7 @@ const Navbar = () => {
           <a className="nav-link" href="#">Why List Your Business</a>
         </li>
         <li className="nav-item">
-          <button type="button" className="btn btn-link">Sign Up</button>
-        </li>
-        <li className="nav-item">
-          <button type="button" className="btn btn-warning">Log In</button>
+          <button type="button" className="btn btn-warning">Post Job</button>
         </li>
       </ul>
     </nav>
