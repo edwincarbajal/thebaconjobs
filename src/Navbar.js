@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return(
     <nav className="navbar sticky-top navbar-light bg-light">
-      <a className="navbar-brand" href="#">theBACONjobs</a>
+      <Link to="/" className="navbar-brand">theBaconJobs</Link>
       <ul className="nav justify-content-end">
         <li className="nav-item">
           <a className="nav-link active" href="#">How it Works</a>
