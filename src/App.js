@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import Navbar from './Navbar';
+import Main from './Main';
 // import logo from './logo.svg';
 // import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      jobs: []
+    }
+  }
+
+  componentWillMount() {
+    axios.get('http://localhost:3001/v1/posts')
+      .then((response) => {
+        this.setState({ jobs: response.data })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -25,8 +45,10 @@ class App extends Component {
           </div>
           {/* welcome content */}
 
+          {/* body component */}
+          <Main jobs={this.state.jobs}/>
+          {/* body component */}
         </div>
-        {/* body component */}
       </div>
     );
   }
