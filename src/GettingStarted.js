@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import update from 'immutability-helper';
 
+import LogIn from './LogIn';
+import SignUp from './SignUp';
+
 class GettingStarted extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +22,7 @@ class GettingStarted extends Component {
         password: ''
       }
     }
+    this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
   }
 
   showSignUpForm = () => {
@@ -35,18 +39,81 @@ class GettingStarted extends Component {
      })
   }
 
-  handleEmailChange = (e) => {
+  handleFirstNameChange = (e) => {
+    const first_name = update(this.state.signUp, {
+       first_name: {$set: e.target.value}
+    });
+    this.setState({ first_name });
+  }
+
+  handleLastNameChange = (e) => {
+    const last_name = update(this.state.signUp, {
+       last_name: {$set: e.target.value}
+    });
+    this.setState({ last_name });
+  }
+
+  handleSignUpEmailChange = (e) => {
+    const email = update(this.state.signUp, {
+       email: {$set: e.target.value}
+    });
+    this.setState({ email });
+  }
+
+  handleLogInEmailChange = (e) => {
     const email = update(this.state.logIn, {
        email: {$set: e.target.value}
     });
-    this.setState({ email: email })
+    this.setState({ email });
   }
 
-  handlePasswordChange = (e) => {
+  handleSignUpPasswordChange = (e) => {
+    const password = update(this.state.signUp, {
+       password: {$set: e.target.value}
+    });
+    this.setState({ password: password });
+  }
+
+  handleLogInPasswordChange = (e) => {
     const password = update(this.state.logIn, {
        password: {$set: e.target.value}
     });
-    this.setState({ password: password })
+    this.setState({ password: password });
+  }
+
+  createUser = () => {
+    return axios.post('http://localhost:3001/v1/users', {
+      user: {
+        first_name: this.state.first_name.first_name,
+        last_name: this.state.last_name.last_name,
+        email: this.state.email.email,
+        password: this.state.password.password
+      }
+    });
+  }
+
+  getUserPermission = () => {
+    return axios.post('http://localhost:3001/user_token',
+    {
+      auth: {
+        email: `${this.state.email.email}`,
+        password: `${this.state.password.password}`
+      }
+    });
+  }
+
+  async handleSignUpSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const user = await this.createUser();
+      const token = await this.getUserPermission();
+      localStorage.setItem('jwt', token.data.jwt);
+      this.props.history.push('/');
+    }
+    catch (err) {
+      console.log(err);
+    }
   }
 
   handleLogInSubmit = (e) => {
@@ -67,7 +134,7 @@ class GettingStarted extends Component {
     .then((response) => {
       localStorage.setItem('jwt', response.data.jwt);
       this.props.checkLocalStorage();
-      this.props.history.push('/')
+      this.props.history.push('/');
     })
     .catch((error) => {
       console.log(error);
@@ -77,32 +144,38 @@ class GettingStarted extends Component {
   render() {
     return(
       <div className="row">
-        <div className="col-md-6 text-center" onClick={this.showSignUpForm}>
+        <div className="col-md-6 text-center">
           {
             this.state.signUp.display ? (
-              "sign up"
+              <SignUp
+                handleSignUpSubmit={this.handleSignUpSubmit}
+                handleFirstNameChange={this.handleFirstNameChange}
+                handleLastNameChange={this.handleLastNameChange}
+                handleSignUpEmailChange={this.handleSignUpEmailChange}
+                handleSignUpPasswordChange={this.handleSignUpPasswordChange}
+                first_nameValue={this.state.signUp.first_name}
+                last_nameValue={this.state.signUp.last_name}
+                emailValue={this.state.signUp.email}
+                passwordValue={this.state.signUp.password}
+              />
             ) : (
               <div>
                 <h2>I want to sign up</h2>
                 <p>I want to shape the future by joining one of the fastest growing technology startups on TheBacon.</p>
+                <button type="button" className="btn btn-outline-warning btn-lg btn-block" onClick={this.showSignUpForm}>Sign up</button>
               </div>
             )}
         </div>
         <div className="col-md-6 text-center">
           {
             this.state.logIn.display ? (
-              <form onSubmit={this.handleLogInSubmit}>
-                <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Email address</label>
-                  <input onChange={this.handleEmailChange}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.logIn.email} />
-                  <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">Password</label>
-                  <input onChange={this.handlePasswordChange} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value={this.state.logIn.password} />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-              </form>
+              <LogIn
+                handleLogInSubmit={this.handleLogInSubmit}
+                handleLogInEmailChange={this.handleLogInEmailChange}
+                handleLogInPasswordChange={this.handleLogInPasswordChange}
+                emailValue={this.state.logIn.email}
+                passwordValue={this.state.logIn.password}
+              />
             ) : (
               <div>
                 <h2>I want to log in</h2>
