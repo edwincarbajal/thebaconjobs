@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import update from 'immutability-helper';
+import styles from './GettingStarted.css';
 
 import LogIn from './LogIn';
 import SignUp from './SignUp';
@@ -146,8 +147,8 @@ class GettingStarted extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-6 text-center">
+      <div className="row getting-started-container">
+        <div className="signup-container col-md-6 text-center">
           {this.state.signUp.display
             ? <SignUp
                 handleSignUpSubmit={this.handleSignUpSubmit}
@@ -175,7 +176,7 @@ class GettingStarted extends Component {
                 </button>
               </div>}
         </div>
-        <div className="col-md-6 text-center">
+        <div className="login-container col-md-6 text-center">
           {this.state.logIn.display
             ? <LogIn
                 handleLogInSubmit={this.handleLogInSubmit}
@@ -187,11 +188,12 @@ class GettingStarted extends Component {
             : <div>
                 <h2>I want to log in</h2>
                 <p>
-                  I want to continue my job search or post a new job posting.
+                  I want to continue my job search<br />or post a new job
+                  posting.
                 </p>
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-outline-warning btn-lg btn-block"
                   onClick={this.showLogInForm}
                 >
                   Log In

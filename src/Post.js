@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Post.css';
 
 const Post = props => {
   const categories = string => {
     return string.split(',').map(category => {
       return (
         <li key={category} className="list-inline-item">
-          <h5>
-            <span className="text-uppercase text-light badge badge-info">
+          <h4>
+            <span className="font-weight-normal text-uppercase badge">
               {category}
             </span>
-          </h5>
+          </h4>
         </li>
       );
     });
@@ -26,7 +27,7 @@ const Post = props => {
                 <h6 className="card-title text-uppercase">
                   {props.job.employer}
                 </h6>
-                <h5 className="card-title text-uppercase">
+                <h5 className="job-card-title card-title text-uppercase">
                   <Link to={`/jobs/${props.job.id}`}>
                     <strong>
                       {props.job.position}
@@ -34,12 +35,12 @@ const Post = props => {
                   </Link>
                 </h5>
               </div>
-              <div className="col-md-3">
+              <div className="category-card col-md-3">
                 <ul className="list-inline">
                   {categories(props.job.category)}
                 </ul>
               </div>
-              <div className="col-md-3">
+              <div className="location-card col-md-3">
                 <h6 className="text-muted text-right align-middle">
                   {props.job.location}
                 </h6>

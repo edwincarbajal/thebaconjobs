@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import styles from './NewJob.css';
 
 class NewJob extends Component {
   constructor(props) {
@@ -110,17 +111,17 @@ class NewJob extends Component {
   render() {
     return (
       <div>
-        <div className="row">
-          <div className="col">
+        <div id="new-job-container" className="row">
+          <div className="col text-center">
             <h1>
               <span className="text-info">Post a job.</span>Reach thousands of
               talented people
             </h1>
           </div>
         </div>
-        <div className="col-md-6 mx-auto">
+        <div id="new-job-form-container" className="col-md-6 mx-auto">
           <form onSubmit={this.handleJobSubmit}>
-            <h1>Company Details</h1>
+            <h1 className="form-titles">Company Details</h1>
             <div className="form-group">
               <label htmlFor="companyDetails">Company name*</label>
               <input
@@ -133,7 +134,7 @@ class NewJob extends Component {
               />
             </div>
 
-            <h1>Job Details</h1>
+            <h1 className="form-titles">Job Details</h1>
             <div className="form-group">
               <label htmlFor="PositionInput">Position</label>
               <input

@@ -10,8 +10,10 @@ const Navbar = () => {
       </Link>
       <ul className="nav justify-content-end">
         <li className="nav-item">
-          <Link to="/job/new" type="button" className="btn">
-            Post Job
+          <Link to="/job/new">
+            <button type="button" className="btn">
+              Post Job
+            </button>
           </Link>
         </li>
       </ul>
