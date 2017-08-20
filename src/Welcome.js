@@ -1,27 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Welcome.css';
 
 const Welcome = props => {
   return (
     <div className="row">
-      <div className="col-md-7">
-        <p className="text-uppercase text-secondary text-left">
+      <div id="welcome-container" className="col-12">
+        <h6 className="text-uppercase text-secondary text-left">
           We help you bring home the bacon
-        </p>
-        <p className="lead text-left">
+        </h6>
+        <h1 className="text-left">
           The Bacon brings <span className="font-weight-bold">
             new roles
           </span>{' '}
-          to the table, because<br /> we're{' '}
+          to the table because,<br /> we're{' '}
           <span className="font-weight-bold">better</span> when we work{' '}
           <span className="font-weight-bold">together</span>.
-        </p>
+        </h1>
         <p>
           <Link to="/getting-started">
             <button
               type="button"
               onClick={props.handleGetStartedClick}
-              className="btn btn-primary"
+              className="btn btn-light btn-lg"
             >
               Get Started
             </button>
