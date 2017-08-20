@@ -80,8 +80,7 @@ class NewJob extends Component {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('jwt')
+        'Content-Type': 'application/json'
       }
     };
     axios
@@ -93,15 +92,14 @@ class NewJob extends Component {
             description: this.state.value,
             employer: this.state.employer,
             category: allCategories.toString(),
-            location: this.state.location,
-            user_id: 1
+            location: this.state.location
           }
         },
         config
       )
       .then(response => {
-        this.props.updateJobs(response.data.data);
-        this.props.history.push(`/jobs/${response.data.data.id}`);
+        this.props.updateJobs(response.data);
+        this.props.history.push(`/jobs/${response.data.id}`);
       })
       .catch(error => {
         console.log(error);

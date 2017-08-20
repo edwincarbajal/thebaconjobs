@@ -17,11 +17,7 @@ const Welcome = props => {
         </h1>
         <p>
           <Link to="/getting-started">
-            <button
-              type="button"
-              onClick={props.handleGetStartedClick}
-              className="btn btn-lg"
-            >
+            <button type="button" className="btn btn-lg">
               Get Started
             </button>
           </Link>

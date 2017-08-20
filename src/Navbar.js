@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.css';
 
-const Navbar = () => {
+const Navbar = props => {
   return (
     <nav className="navbar sticky-top navbar-light">
       <Link to="/" className="navbar-brand">
@@ -16,6 +16,12 @@ const Navbar = () => {
             </button>
           </Link>
         </li>
+        {props.isLoggedIn &&
+          <li className="nav-item">
+            <Link to="/job/new">
+              {props.current_user}
+            </Link>
+          </li>}
       </ul>
     </nav>
   );

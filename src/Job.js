@@ -15,7 +15,7 @@ class Job extends Component {
     axios
       .get(`http://localhost:3001/v1/posts/${id}`)
       .then(response => {
-        this.setState({ job: response.data.data });
+        this.setState({ job: response.data });
       })
       .catch(error => {
         console.log(error);

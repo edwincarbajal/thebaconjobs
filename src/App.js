@@ -9,11 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobs: [],
-      getStartedClicked: false,
-      isLoggedIn: false
+      jobs: []
     };
-    this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
   }
 
   componentWillMount() {
@@ -25,14 +22,7 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
-
-    this.checkLocalStorage();
   }
-
-  checkLocalStorage = () => {
-    const token = localStorage.getItem('jwt');
-    token && this.setState({ isLoggedIn: !this.state.isLoggedIn });
-  };
 
   updateJobs = job => {
     this.setState(prevState => ({
@@ -40,24 +30,13 @@ class App extends Component {
     }));
   };
 
-  handleGetStartedClick() {
-    this.setState({ getStartedClicked: !this.state.getStartedClicked });
-  }
-
   render() {
-    const tokenStatus = this.state.getStartedClicked || this.state.isLoggedIn;
     return (
       <div>
         <Navbar />
         <div className="container-fluid">
-          {/* Welcome component renders if token does not exist */}
-          {!tokenStatus &&
-            <Welcome handleGetStartedClick={this.handleGetStartedClick} />}
-          <Main
-            jobs={this.state.jobs}
-            checkLocalStorage={this.checkLocalStorage}
-            updateJobs={this.updateJobs}
-          />
+          <Welcome handleGetStartedClick={this.handleGetStartedClick} />
+          <Main jobs={this.state.jobs} updateJobs={this.updateJobs} />
         </div>
       </div>
     );
