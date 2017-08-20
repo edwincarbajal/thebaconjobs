@@ -1,6 +1,6 @@
 #welcome-container {
   padding: 100px 50px;
-  height: 60vh;
+  height: 65vh;
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
   -webkit-clip-path: polygon(0 0, 1600px 0, 1600px 87%, 0 100%);
    clip-path: polygon(0 0, 1600px 0, 1600px 87%, 0 100%);
@@ -9,5 +9,15 @@
     border-radius: 50px;
     background-image: linear-gradient(to right, #FECD93 0%, #FCCB92 100%);
     cursor: pointer;
+  }
+}
+
+// Medium devices (tablets, 736px and down)
+@media (max-width: 736px) {
+  #welcome-container {
+    padding: 60px 20px;
+    h1 {
+      font-size: 2rem;
+    }
   }
 }
