@@ -12,16 +12,17 @@ class App extends Component {
       jobs: [],
       getStartedClicked: false,
       isLoggedIn: false
-    }
+    };
     this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
   }
 
   componentWillMount() {
-    axios.get('http://localhost:3001/v1/posts')
-      .then((response) => {
-        this.setState({ jobs: response.data })
+    axios
+      .get('http://localhost:3001/v1/posts')
+      .then(response => {
+        this.setState({ jobs: response.data });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
 
@@ -31,13 +32,13 @@ class App extends Component {
   checkLocalStorage = () => {
     const token = localStorage.getItem('jwt');
     token && this.setState({ isLoggedIn: !this.state.isLoggedIn });
-  }
+  };
 
-  updateJobs = (job) => {
-    this.setState((prevState) => ({
+  updateJobs = job => {
+    this.setState(prevState => ({
       jobs: [job, ...prevState.jobs]
     }));
-  }
+  };
 
   handleGetStartedClick() {
     this.setState({ getStartedClicked: !this.state.getStartedClicked });
@@ -51,8 +52,7 @@ class App extends Component {
         <div className="container-fluid">
           {/* Welcome component renders if token does not exist */}
           {!tokenStatus &&
-            <Welcome handleGetStartedClick={this.handleGetStartedClick}/>
-          }
+            <Welcome handleGetStartedClick={this.handleGetStartedClick} />}
           <Main
             jobs={this.state.jobs}
             checkLocalStorage={this.checkLocalStorage}
