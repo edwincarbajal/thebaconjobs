@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styles from './Job.css';
 
 class Job extends Component {
   constructor(props) {
@@ -26,9 +27,9 @@ class Job extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-12 text-center">
+          <div className="job-view col-12 text-center">
             <h5 className="text-uppercase text-muted">{`${employer} is hiring a`}</h5>
-            <h1 className="text-uppercase">
+            <h1 className="job-position text-uppercase">
               <strong>
                 {position}
               </strong>
