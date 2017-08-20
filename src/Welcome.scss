@@ -1,0 +1,11 @@
+#welcome-container {
+  padding: 100px 50px;
+  height: 60vh;
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  .btn {
+    margin-top: 20px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #FECD93 0%, #FCCB92 100%);
+    cursor: pointer;
+  }
+}
