@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Post = (props) => {
 
   const categories = (string) => {
-    return string.split(' ').map((category) => {
+    return string.split(',').map((category) => {
       return(
         <li key={category} className="list-inline-item">
           <h5><span className="text-uppercase text-light badge badge-info">{category}</span></h5>

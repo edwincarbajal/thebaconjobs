@@ -4,8 +4,6 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import Welcome from './Welcome';
 import Main from './Main';
-// import logo from './logo.svg';
-// import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +33,12 @@ class App extends Component {
     token && this.setState({ isLoggedIn: !this.state.isLoggedIn });
   }
 
+  updateJobs = (job) => {
+    this.setState((prevState) => ({
+      jobs: [job, ...prevState.jobs]
+    }));
+  }
+
   handleGetStartedClick() {
     this.setState({ getStartedClicked: !this.state.getStartedClicked });
   }
@@ -43,19 +47,18 @@ class App extends Component {
     const tokenStatus = this.state.getStartedClicked || this.state.isLoggedIn;
     return (
       <div>
-        {/* navbar component */}
-          <Navbar />
-        {/* navbar component */}
-
-        {/* body component */}
+        <Navbar />
         <div className="container-fluid">
+          {/* Welcome component renders if token does not exist */}
           {!tokenStatus &&
             <Welcome handleGetStartedClick={this.handleGetStartedClick}/>
           }
-
-          <Main jobs={this.state.jobs} checkLocalStorage={this.checkLocalStorage}/>
+          <Main
+            jobs={this.state.jobs}
+            checkLocalStorage={this.checkLocalStorage}
+            updateJobs={this.updateJobs}
+          />
         </div>
-        {/* body component */}
       </div>
     );
   }

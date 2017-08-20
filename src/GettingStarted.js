@@ -22,6 +22,7 @@ class GettingStarted extends Component {
         password: ''
       }
     }
+    // This function get's binded in the contructor because it uses the async/await keywords
     this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
   }
 
@@ -128,17 +129,15 @@ class GettingStarted extends Component {
           email: `${this.state.email.email}`,
           password: `${this.state.password.password}`
         }
-      },
-      config
-    )
-    .then((response) => {
-      localStorage.setItem('jwt', response.data.jwt);
-      this.props.checkLocalStorage();
-      this.props.history.push('/');
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      }, config)
+        .then((response) => {
+          localStorage.setItem('jwt', response.data.jwt);
+          this.props.checkLocalStorage();
+          this.props.history.push('/');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
   }
 
   render() {
