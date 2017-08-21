@@ -72,7 +72,7 @@ class UpdateForm extends Component {
 
     axios
       .patch(
-        `http://localhost:3001/v1/posts/${this.props.params}`,
+        `https://thebaconjobsapi.herokuapp.com/v1/posts/${this.props.params}`,
         {
           post: {
             position: this.state.position,

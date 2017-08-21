@@ -16,7 +16,7 @@ class App extends Component {
 
   componentWillMount() {
     axios
-      .get('http://localhost:3001/v1/posts')
+      .get('https://thebaconjobsapi.herokuapp.com/v1/posts')
       .then(response => {
         this.setState({ jobs: response.data });
       })
@@ -33,7 +33,7 @@ class App extends Component {
 
   fetchData = () => {
     axios
-      .get('http://localhost:3001/v1/posts')
+      .get('https://thebaconjobsapi.herokuapp.com/v1/posts')
       .then(response => {
         this.setState({ jobs: response.data });
       })
