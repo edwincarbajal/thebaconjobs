@@ -37,7 +37,7 @@ const Post = props => {
               </div>
               <div className="category-card col-md-3">
                 <ul className="list-inline">
-                  {categories(props.job.category)}
+                  {categories(props.job.categories)}
                 </ul>
               </div>
               <div className="location-card col-md-3">

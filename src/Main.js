@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Jobs from './Jobs';
 import Job from './Job';
 import NewJob from './NewJob';
+import EditJob from './EditJob';
 
 const Main = props => {
   const { jobs, updateJobs } = props;
@@ -20,6 +21,11 @@ const Main = props => {
           exact
           path="/job/new"
           render={props => <NewJob {...props} updateJobs={updateJobs} />}
+        />
+        <Route
+          exact
+          path="/jobs/:id/edit"
+          render={props => <EditJob {...props} updateJobs={updateJobs} />}
         />
       </Switch>
     </main>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Welcome.css';
 
 const Welcome = props => {
@@ -16,11 +15,9 @@ const Welcome = props => {
           <span className="font-weight-bold">together</span>.
         </h1>
         <p>
-          <Link to="/getting-started">
-            <button type="button" className="btn btn-lg">
-              Get Started
-            </button>
-          </Link>
+          <button type="button" className="btn btn-lg">
+            Get Started
+          </button>
         </p>
       </div>
     </div>

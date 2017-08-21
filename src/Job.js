@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import styles from './Job.css';
 
 class Job extends Component {
@@ -34,6 +35,9 @@ class Job extends Component {
                 {position}
               </strong>
             </h1>
+            <Link to={`/jobs/${this.props.match.params.id}/edit`}>
+              <small className="text-muted">Edit Job</small>
+            </Link>
           </div>
         </div>
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import Welcome from './Welcome';
 import Main from './Main';
+import Footer from './Footer';
 
 class App extends Component {
   constructor(props) {
@@ -34,9 +35,13 @@ class App extends Component {
     return (
       <div>
         <Navbar />
+
         <div className="container-fluid">
           <Welcome handleGetStartedClick={this.handleGetStartedClick} />
+
           <Main jobs={this.state.jobs} updateJobs={this.updateJobs} />
+
+          <Footer />
         </div>
       </div>
     );
