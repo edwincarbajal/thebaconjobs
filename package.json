@@ -13,11 +13,11 @@
     "react-select": "^1.0.0-rc.5"
   },
   "lint-staged": {
-   "src/**/*.{js,jsx,json,css}": [
-     "prettier --single-quote --write",
-     "git add"
-   ]
- },
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
