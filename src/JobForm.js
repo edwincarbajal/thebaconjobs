@@ -69,7 +69,7 @@ class JobForm extends Component {
     };
     axios
       .post(
-        'http://localhost:3001/v1/posts',
+        'https://thebaconjobsapi.herokuapp.com/v1/posts',
         {
           post: {
             position: this.state.position,

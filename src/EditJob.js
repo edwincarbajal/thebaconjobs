@@ -13,7 +13,7 @@ class EditJob extends Component {
   componentWillMount = () => {
     const id = this.props.match.params.id;
     axios
-      .get(`http://localhost:3001/v1/posts/${id}`)
+      .get(`https://thebaconjobsapi.herokuapp.com/v1/posts${id}`)
       .then(response => {
         this.setState({ job: response.data });
       })
