@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-class JobForm extends Component {
+class UpdateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,8 +71,8 @@ class JobForm extends Component {
     };
 
     axios
-      .post(
-        'http://localhost:3001/v1/posts',
+      .patch(
+        `http://localhost:3001/v1/posts/${this.props.params}`,
         {
           post: {
             position: this.state.position,
@@ -86,7 +86,7 @@ class JobForm extends Component {
         config
       )
       .then(response => {
-        this.props.updateJobs(response.data);
+        this.props.fetchData();
         this.props.history.push('/');
       })
       .catch(error => {
@@ -242,4 +242,4 @@ class JobForm extends Component {
   }
 }
 
-export default JobForm;
+export default UpdateForm;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import JobForm from './JobForm';
+import UpdateForm from './UpdateForm';
 
 class EditJob extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class EditJob extends Component {
   componentWillMount = () => {
     const id = this.props.match.params.id;
     axios
-      .get(`https://thebaconjobsapi.herokuapp.com/v1/posts${id}`)
+      .get(`http://localhost:3001/v1/posts/${id}`)
       .then(response => {
         this.setState({ job: response.data });
       })
@@ -32,11 +32,11 @@ class EditJob extends Component {
         </div>
 
         <div id="new-job-form-container" className="col-md-6 mx-auto">
-          <JobForm
+          <UpdateForm
             job={this.state.job}
+            params={this.props.match.params.id}
             history={this.props.history}
-            updateJobs={this.props.updateJobs}
-            editJob
+            fetchData={this.props.fetchData}
           />
         </div>
       </div>

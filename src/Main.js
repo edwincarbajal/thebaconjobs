@@ -7,7 +7,7 @@ import NewJob from './NewJob';
 import EditJob from './EditJob';
 
 const Main = props => {
-  const { jobs, updateJobs } = props;
+  const { jobs, updateJobs, fetchData } = props;
   return (
     <main>
       <Switch>
@@ -25,7 +25,7 @@ const Main = props => {
         <Route
           exact
           path="/jobs/:id/edit"
-          render={props => <EditJob {...props} updateJobs={updateJobs} />}
+          render={props => <EditJob {...props} fetchData={fetchData} />}
         />
       </Switch>
     </main>

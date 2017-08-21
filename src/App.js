@@ -16,7 +16,7 @@ class App extends Component {
 
   componentWillMount() {
     axios
-      .get('https://thebaconjobsapi.herokuapp.com/v1/posts')
+      .get('http://localhost:3001/v1/posts')
       .then(response => {
         this.setState({ jobs: response.data });
       })
@@ -31,6 +31,17 @@ class App extends Component {
     }));
   };
 
+  fetchData = () => {
+    axios
+      .get('http://localhost:3001/v1/posts')
+      .then(response => {
+        this.setState({ jobs: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -39,7 +50,11 @@ class App extends Component {
         <div className="container-fluid">
           <Welcome handleGetStartedClick={this.handleGetStartedClick} />
 
-          <Main jobs={this.state.jobs} updateJobs={this.updateJobs} />
+          <Main
+            jobs={this.state.jobs}
+            updateJobs={this.updateJobs}
+            fetchData={this.fetchData}
+          />
 
           <Footer />
         </div>

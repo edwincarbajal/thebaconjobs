@@ -3,7 +3,6 @@ import styles from './NewJob.css';
 import JobForm from './JobForm';
 
 const NewJob = props => {
-  console.log(props);
   return (
     <div>
       <div id="new-job-container" className="row">
