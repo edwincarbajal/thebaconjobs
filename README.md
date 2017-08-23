@@ -36,7 +36,7 @@ Install dependencies
 yarn install
 ```
 
-To start the server in development run ```yarn``` start and visit http://localhost:3000
+To start the server in development run ```yarn start``` and visit http://localhost:3000
 
 Running ```yarn start``` will also run the ```watch-css``` script.
 
